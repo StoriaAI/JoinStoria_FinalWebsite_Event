@@ -143,23 +143,27 @@ def generate_music_direct_api(prompt, duration_seconds=15.0, prompt_influence=0.
         logger.info(f"Original prompt: {prompt}")
         logger.info(f"Sanitized prompt: {sanitized_prompt}")
         
-        # Make direct API call
+        # Make direct API call - verify final headers
         url = "https://api.elevenlabs.io/v1/sound-effects/generate"
         headers = {
             "xi-api-key": api_key,
-            "Content-Type": "application/json"
-            # Removed X-Ambiance-Prompt header entirely
+            "Content-Type": "application/json"  # Ensure no trailing comma
         }
         
-        # Prepare the payload without header issues
+        # Verify payload structure matches API documentation
         payload = {
             "text": sanitized_prompt,
             "prompt_influence": prompt_influence,
             "duration_seconds": duration_seconds
         }
         
-        logger.info(f"Making direct API call to {url}")
-        response = requests.post(url, json=payload, headers=headers, timeout=30)  # Added timeout
+        # Add timeout and error handling
+        response = requests.post(
+            url, 
+            json=payload, 
+            headers=headers,
+            timeout=30
+        )
         
         # Handle the response
         if response.status_code != 200:
