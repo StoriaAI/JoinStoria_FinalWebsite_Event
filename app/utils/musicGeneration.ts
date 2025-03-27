@@ -17,25 +17,41 @@ export function sanitizeHeaderValue(str: string): string {
 }
 
 /**
+ * Encodes a string to Base64
+ */
+export function encodeToBase64(str: string): string {
+  if (typeof window !== 'undefined') {
+    // Browser environment
+    return btoa(str);
+  } else {
+    // Node.js environment
+    return Buffer.from(str).toString('base64');
+  }
+}
+
+/**
  * Generates music based on the provided prompt
  */
 export async function generateMusic(prompt: string, duration: number = 15, influence: number = 0.7) {
   try {
-    // Sanitize the prompt before sending
+    // Sanitize and encode the prompt
     const sanitizedPrompt = sanitizeHeaderValue(prompt);
     
     if (!sanitizedPrompt) {
       throw new Error('Prompt is empty after sanitization');
     }
+    
+    // Encode the prompt to Base64 to avoid any character issues
+    const encodedPrompt = encodeToBase64(sanitizedPrompt);
 
-    // Instead of using a custom header, send the prompt in the body
-    const response = await fetch('/api/music/generate-simple', {
+    // Use the new endpoint that accepts encoded prompts
+    const response = await fetch('/api/music/encode-generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        prompt: sanitizedPrompt,
+        encodedPrompt,
         duration,
         influence
       })
@@ -46,7 +62,7 @@ export async function generateMusic(prompt: string, duration: number = 15, influ
       if (response.status === 401) {
         throw new Error('API key is invalid or not provided. Please check your configuration.');
       }
-      throw new Error(error.message || 'Failed to generate music');
+      throw new Error(error.message || error.error || 'Failed to generate music');
     }
 
     return await response.blob();
