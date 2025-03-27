@@ -82,15 +82,9 @@ def sanitize_prompt(prompt):
     if not prompt:
         return ""
     
-    # Remove or replace problematic characters
-    # Replace quotes with single quotes
-    prompt = prompt.replace('"', "'")
-    
-    # Remove any non-printable characters
-    prompt = ''.join(char for char in prompt if char.isprintable())
-    
-    # Remove any characters that might cause issues in headers
-    prompt = re.sub(r'[\\<>{}[\]^`]', '', prompt)
+    # Only allow basic ASCII characters, letters, numbers, and basic punctuation
+    allowed_chars = set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,!?-_")
+    prompt = ''.join(char for char in prompt if char in allowed_chars)
     
     # Trim whitespace and limit length
     prompt = prompt.strip()
@@ -128,31 +122,20 @@ def generate_music(prompt, duration_seconds=15.0, prompt_influence=0.7, output_f
             api_key = os.getenv('ELEVENLABS_API_KEY')
             logger.info(f"Using API key that starts with: {api_key[:5]}***")
             
-            # Create the client
             client = ElevenLabs(api_key=api_key)
             logger.info("Successfully created ElevenLabs client")
             
-            # Make direct API call to sound effects endpoint
-            url = "https://api.elevenlabs.io/v1/sound-effects/generate"
-            headers = {
-                "xi-api-key": api_key,
-                "Content-Type": "application/json"
-            }
+            # Use the client's built-in method
+            response = client.text_to_sound_effects.convert(
+                text=sanitized_prompt,
+                prompt_influence=prompt_influence,
+                duration_seconds=duration_seconds,
+            )
             
-            data = {
-                "text": sanitized_prompt,
-                "duration_seconds": duration_seconds,
-                "prompt_influence": prompt_influence
-            }
+            logger.info("Successfully received response from ElevenLabs")
             
-            response = requests.post(url, headers=headers, json=data)
-            
-            if response.status_code != 200:
-                logger.error(f"API request failed with status code: {response.status_code}")
-                logger.error(f"Response: {response.text}")
-                return None
-            
-            audio_data = response.content
+            # Join all chunks into one bytes object
+            audio_data = b"".join(response)
             logger.info(f"Generated audio data size: {len(audio_data)} bytes")
             
             # Save to file if output_file is specified
