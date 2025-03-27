@@ -131,14 +131,6 @@ def generate_music_direct_api(prompt, duration_seconds=15.0, prompt_influence=0.
     """
     Generate music by directly calling ElevenLabs API without using their client library
     to avoid header issues
-    
-    Args:
-        prompt (str): The prompt describing the music to generate
-        duration_seconds (float): Duration of the music in seconds
-        prompt_influence (float): How much the prompt influences the generation (0.0-1.0)
-        
-    Returns:
-        bytes: Audio data or None if there was an error
     """
     try:
         # Get the API key
@@ -156,12 +148,14 @@ def generate_music_direct_api(prompt, duration_seconds=15.0, prompt_influence=0.
         url = "https://api.elevenlabs.io/v1/sound-effects/generate"
         headers = {
             "xi-api-key": api_key,
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            # Add header-specific sanitization for any custom headers
+            "X-Ambiance-Prompt": sanitize_header_value(prompt)
         }
         
         # Prepare the payload without header issues
         payload = {
-            "text": sanitized_prompt,
+            "text": sanitized_prompt,  # This uses the body-sanitized version
             "prompt_influence": prompt_influence,
             "duration_seconds": duration_seconds
         }
