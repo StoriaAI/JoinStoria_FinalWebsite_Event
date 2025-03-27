@@ -1,16 +1,12 @@
 {
-  "name": "storia",
-  "version": "1.1.0",
-  "main": "src/index.js",
+  "name": "joinstoria-website",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "node --watch src/index.js",
-    "build": "echo \"Building Storia for production...\"",
-    "vercel-build": "echo \"Vercel build step complete\"",
-    "prod": "NODE_ENV=production node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "setup-python": "pip install -r python_scripts/requirements.txt",
-    "setup-vercel": "node setup-vercel-env.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "keywords": [
     "books",
@@ -32,13 +28,23 @@
     "elevenlabs": "^1.54.0",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
+    "fs-extra": "^11.2.0",
+    "next": "^14.0.0",
     "nodemailer": "^6.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "replicate": "^1.0.1",
-    "storia": "file:",
-    "fs-extra": "^11.2.0"
+    "storia": "file:"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "@types/bun": "latest",
+    "@types/node": "^20.0.0",
+    "@types/react": "18.3.20",
+    "@types/react-dom": "^18.2.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.0.0",
+    "nodemon": "^3.1.0",
+    "typescript": "5.8.2"
   },
   "engines": {
     "node": ">=14.0.0"
