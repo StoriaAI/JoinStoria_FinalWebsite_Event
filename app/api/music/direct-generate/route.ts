@@ -12,11 +12,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Get parameters from FormData
-    const formData = await req.formData();
-    const prompt = formData.get('prompt')?.toString() || '';
-    const duration = Number(formData.get('duration')) || 15;
-    const influence = Number(formData.get('influence')) || 0.7;
+    // Get parameters from URL-encoded body
+    const text = await req.text();
+    const params = new URLSearchParams(text);
+    const prompt = decodeURIComponent(params.get('prompt') || '');
+    const duration = Number(params.get('duration')) || 15;
+    const influence = Number(params.get('influence')) || 0.7;
 
     if (!prompt) {
       return NextResponse.json(
@@ -36,7 +37,7 @@ export async function POST(req: NextRequest) {
         method: 'POST',
         headers: {
           'xi-api-key': apiKey,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           text: prompt,

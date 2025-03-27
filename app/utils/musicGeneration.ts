@@ -35,20 +35,23 @@ export function encodeToBase64(str: string): string {
 
 /**
  * Generates music based on the provided prompt
- * Uses FormData to avoid header issues
+ * Uses URLSearchParams to avoid header issues
  */
 export async function generateMusic(prompt: string, duration: number = 15, influence: number = 0.7) {
   try {
-    // Create FormData
-    const formData = new FormData();
-    formData.append('prompt', sanitizeHeaderValue(prompt));
-    formData.append('duration', duration.toString());
-    formData.append('influence', influence.toString());
+    // Create URLSearchParams
+    const params = new URLSearchParams();
+    params.append('prompt', encodeURIComponent(prompt));
+    params.append('duration', duration.toString());
+    params.append('influence', influence.toString());
 
-    // Call the endpoint with FormData
+    // Call the endpoint with URL-encoded body
     const response = await fetch('/api/music/direct-generate', {
       method: 'POST',
-      body: formData
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: params.toString()
     });
     
     if (!response.ok) {
