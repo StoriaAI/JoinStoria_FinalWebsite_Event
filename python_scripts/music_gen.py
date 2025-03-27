@@ -144,7 +144,7 @@ def generate_music_direct_api(prompt, duration_seconds=15.0, prompt_influence=0.
         logger.info(f"Sanitized prompt: {sanitized_prompt}")
         
         # Make direct API call - verify final headers
-        url = "https://api.elevenlabs.io/v1/sound-effects/generate"
+        url = "https://api.elevenlabs.io/v1/sound-generation"
         headers = {
             "xi-api-key": api_key,
             "Content-Type": "application/json"  # Ensure no trailing comma
