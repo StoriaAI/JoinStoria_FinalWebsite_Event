@@ -30,47 +30,66 @@ export function encodeToBase64(str: string): string {
 }
 
 /**
+ * Direct music generation utilities
+ */
+
+/**
  * Generates music based on the provided prompt
+ * Does not use X-Ambiance-Prompt header
  */
 export async function generateMusic(prompt: string, duration: number = 15, influence: number = 0.7) {
   try {
-    // Sanitize and encode the prompt
-    const sanitizedPrompt = sanitizeHeaderValue(prompt);
-    
-    if (!sanitizedPrompt) {
-      throw new Error('Prompt is empty after sanitization');
-    }
-    
-    // Encode the prompt to Base64 to avoid any character issues
-    const encodedPrompt = encodeToBase64(sanitizedPrompt);
-
-    // Use the new endpoint that accepts encoded prompts
-    const response = await fetch('/api/music/encode-generate', {
+    // Call the standalone endpoint - no custom headers
+    const response = await fetch('/api/music/direct-generate', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        encodedPrompt,
+        prompt,
         duration,
         influence
       })
     });
-
+    
     if (!response.ok) {
-      const error = await response.json();
-      if (response.status === 401) {
-        throw new Error('API key is invalid or not provided. Please check your configuration.');
+      let errorText = await response.text();
+      let errorMsg = 'Failed to generate music';
+      
+      try {
+        const errorData = JSON.parse(errorText);
+        errorMsg = errorData.error || errorData.message || errorMsg;
+      } catch (e) {
+        // If we can't parse JSON, use the raw text
+        errorMsg = errorText || errorMsg;
       }
-      throw new Error(error.message || error.error || 'Failed to generate music');
+      
+      throw new Error(errorMsg);
     }
-
+    
     return await response.blob();
   } catch (error) {
     console.error('Error generating music:', error);
     throw error;
   }
 }
+
+/**
+ * Example usage:
+ *
+ * import { generateMusic } from '@/utils/musicGeneration';
+ *
+ * async function playMusic() {
+ *   try {
+ *     const audioBlob = await generateMusic('peaceful forest ambiance');
+ *     const audioUrl = URL.createObjectURL(audioBlob);
+ *     const audio = new Audio(audioUrl);
+ *     await audio.play();
+ *   } catch (error) {
+ *     console.error('Failed to generate music:', error);
+ *   }
+ * }
+ */
 
 /**
  * Example usage in a React component:
