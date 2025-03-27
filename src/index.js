@@ -128,9 +128,28 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs');
 
 // Set views directory based on environment
-const viewsPath = process.env.VERCEL 
-  ? path.join(process.cwd(), 'views')  // Vercel environment
-  : path.join(__dirname, '../views');   // Local environment
+let viewsPath;
+if (process.env.VERCEL) {
+  // Vercel serverless environment
+  viewsPath = '/var/task/views';
+  
+  // Ensure views directory exists and copy views if needed
+  const fs = require('fs-extra');
+  if (!fs.existsSync(viewsPath)) {
+    const sourceViews = path.join(process.cwd(), 'views');
+    if (fs.existsSync(sourceViews)) {
+      fs.copySync(sourceViews, viewsPath);
+      console.log('Copied views to', viewsPath);
+    } else {
+      console.error('Source views directory not found at', sourceViews);
+    }
+  }
+} else {
+  // Local environment
+  viewsPath = path.join(__dirname, '../views');
+}
+
+console.log('Setting views directory to:', viewsPath);
 app.set('views', viewsPath);
 
 // Simple in-memory cache for API responses

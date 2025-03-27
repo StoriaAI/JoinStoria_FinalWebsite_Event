@@ -3,18 +3,13 @@
   "builds": [
     {
       "src": "src/index.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "views/**",
-      "use": "@vercel/static"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["views/**"]
+      }
     }
   ],
   "routes": [
-    {
-      "src": "/views/(.*)",
-      "dest": "/views/$1"
-    },
     {
       "src": "/(.*)",
       "dest": "src/index.js"
