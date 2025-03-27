@@ -12,9 +12,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Get parameters from the request body (JSON)
-    const body = await req.json();
-    const { prompt, duration = 15, influence = 0.7 } = body;
+    // Get parameters from FormData
+    const formData = await req.formData();
+    const prompt = formData.get('prompt')?.toString() || '';
+    const duration = Number(formData.get('duration')) || 15;
+    const influence = Number(formData.get('influence')) || 0.7;
 
     if (!prompt) {
       return NextResponse.json(
@@ -29,7 +31,7 @@ export async function POST(req: NextRequest) {
     console.log('Influence:', influence);
     
     try {
-      // Make a direct fetch to ElevenLabs API, bypassing our Python script entirely
+      // Make a direct fetch to ElevenLabs API
       const response = await fetch('https://api.elevenlabs.io/v1/sound-effects/generate', {
         method: 'POST',
         headers: {

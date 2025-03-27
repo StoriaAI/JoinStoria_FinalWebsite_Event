@@ -35,21 +35,20 @@ export function encodeToBase64(str: string): string {
 
 /**
  * Generates music based on the provided prompt
- * Does not use X-Ambiance-Prompt header
+ * Uses FormData to avoid header issues
  */
 export async function generateMusic(prompt: string, duration: number = 15, influence: number = 0.7) {
   try {
-    // Call the standalone endpoint - no custom headers
+    // Create FormData
+    const formData = new FormData();
+    formData.append('prompt', sanitizeHeaderValue(prompt));
+    formData.append('duration', duration.toString());
+    formData.append('influence', influence.toString());
+
+    // Call the endpoint with FormData
     const response = await fetch('/api/music/direct-generate', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        prompt,
-        duration,
-        influence
-      })
+      body: formData
     });
     
     if (!response.ok) {
