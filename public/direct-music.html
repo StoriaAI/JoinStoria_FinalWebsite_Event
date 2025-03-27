@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storia Music Generator</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 {
+      color: #1a365d;
+    }
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      min-height: 100px;
+    }
+    button {
+      background-color: #4a5568;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #2d3748;
+    }
+    button:disabled {
+      background-color: #a0aec0;
+      cursor: not-allowed;
+    }
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    input[type="number"] {
+      width: 80px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .status {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .success {
+      background-color: #e6fffa;
+      color: #2c7a7b;
+      border: 1px solid #81e6d9;
+    }
+    .error {
+      background-color: #fff5f5;
+      color: #c53030;
+      border: 1px solid #feb2b2;
+    }
+    .loading {
+      background-color: #ebf8ff;
+      color: #2b6cb0;
+      border: 1px solid #bee3f8;
+    }
+  </style>
+</head>
+<body>
+  <h1>Storia Music Generator</h1>
+  <p>Generate background music based on a text prompt.</p>
+  
+  <div>
+    <label for="prompt">Enter your prompt:</label>
+    <textarea id="prompt" placeholder="Example: Peaceful forest ambiance with birds chirping and gentle wind blowing through the trees"></textarea>
+  </div>
+  
+  <div class="controls">
+    <div>
+      <label for="duration">Duration (seconds):</label>
+      <input type="number" id="duration" min="5" max="30" value="15">
+    </div>
+    <div>
+      <label for="influence">Prompt Influence (0-1):</label>
+      <input type="number" id="influence" min="0" max="1" step="0.1" value="0.7">
+    </div>
+  </div>
+  
+  <button id="generate">Generate Music</button>
+  
+  <div id="status" class="status" style="display: none;"></div>
+  
+  <div id="player" style="display: none; margin-top: 20px;">
+    <audio id="audio" controls style="width: 100%;"></audio>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const generateBtn = document.getElementById('generate');
+      const promptInput = document.getElementById('prompt');
+      const durationInput = document.getElementById('duration');
+      const influenceInput = document.getElementById('influence');
+      const statusDiv = document.getElementById('status');
+      const playerDiv = document.getElementById('player');
+      const audioElement = document.getElementById('audio');
+      
+      generateBtn.addEventListener('click', async function() {
+        const prompt = promptInput.value.trim();
+        if (!prompt) {
+          showStatus('error', 'Please enter a prompt.');
+          return;
+        }
+        
+        const duration = parseFloat(durationInput.value) || 15;
+        const influence = parseFloat(influenceInput.value) || 0.7;
+        
+        generateMusic(prompt, duration, influence);
+      });
+      
+      async function generateMusic(prompt, duration, influence) {
+        showStatus('loading', 'Generating music... This may take a few seconds.');
+        generateBtn.disabled = true;
+        playerDiv.style.display = 'none';
+        
+        try {
+          // Direct API call using form data to avoid header issues
+          const formData = new FormData();
+          formData.append('prompt', prompt);
+          formData.append('duration', duration.toString());
+          formData.append('influence', influence.toString());
+          
+          const response = await fetch('/api/music/form-generate', {
+            method: 'POST',
+            body: formData
+          });
+          
+          if (!response.ok) {
+            let errorMsg = 'Failed to generate music';
+            try {
+              const errorData = await response.json();
+              errorMsg = errorData.error || errorMsg;
+            } catch (e) {
+              // If we can't parse JSON, just use the default error message
+            }
+            throw new Error(errorMsg);
+          }
+          
+          const audioBlob = await response.blob();
+          const audioUrl = URL.createObjectURL(audioBlob);
+          
+          audioElement.src = audioUrl;
+          playerDiv.style.display = 'block';
+          showStatus('success', 'Music generated successfully!');
+          
+          // Auto-play the audio
+          try {
+            await audioElement.play();
+          } catch (e) {
+            console.log('Auto-play not allowed. Click the play button to listen.');
+          }
+          
+        } catch (error) {
+          showStatus('error', `Error: ${error.message}`);
+          console.error('Music generation error:', error);
+        } finally {
+          generateBtn.disabled = false;
+        }
+      }
+      
+      function showStatus(type, message) {
+        statusDiv.className = 'status ' + type;
+        statusDiv.textContent = message;
+        statusDiv.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html> 

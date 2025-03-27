@@ -12,12 +12,9 @@ import json
 import argparse
 from pathlib import Path
 from dotenv import load_dotenv
-from elevenlabs import ElevenLabs
 import logging
 import traceback
 import requests
-import re
-from typing import Optional
 
 # Set up logging - use stderr instead of stdout for logs
 logging.basicConfig(
@@ -102,7 +99,7 @@ def sanitize_prompt(prompt):
     
     return prompt
 
-def sanitize_header_value(prompt: str) -> str:
+def sanitize_header_value(prompt):
     """
     Sanitize a string specifically for use in HTTP headers.
     Follows RFC 7230 header field guidelines.
@@ -130,9 +127,65 @@ def sanitize_header_value(prompt: str) -> str:
     
     return prompt
 
-def generate_music(prompt: str, duration_seconds: float = 15.0, 
-                  prompt_influence: float = 0.7, 
-                  output_file: Optional[str] = None) -> Optional[bytes]:
+def generate_music_direct_api(prompt, duration_seconds=15.0, prompt_influence=0.7):
+    """
+    Generate music by directly calling ElevenLabs API without using their client library
+    to avoid header issues
+    
+    Args:
+        prompt (str): The prompt describing the music to generate
+        duration_seconds (float): Duration of the music in seconds
+        prompt_influence (float): How much the prompt influences the generation (0.0-1.0)
+        
+    Returns:
+        bytes: Audio data or None if there was an error
+    """
+    try:
+        # Get the API key
+        api_key = os.getenv('ELEVENLABS_API_KEY')
+        if not api_key:
+            logger.error("ELEVENLABS_API_KEY not found in environment variables")
+            return None
+        
+        # Clean and log the prompt
+        sanitized_prompt = sanitize_prompt(prompt)
+        logger.info(f"Original prompt: {prompt}")
+        logger.info(f"Sanitized prompt: {sanitized_prompt}")
+        
+        # Make direct API call
+        url = "https://api.elevenlabs.io/v1/sound-effects/generate"
+        headers = {
+            "xi-api-key": api_key,
+            "Content-Type": "application/json"
+        }
+        
+        # Prepare the payload without header issues
+        payload = {
+            "text": sanitized_prompt,
+            "prompt_influence": prompt_influence,
+            "duration_seconds": duration_seconds
+        }
+        
+        logger.info(f"Making direct API call to {url}")
+        response = requests.post(url, json=payload, headers=headers)
+        
+        # Handle the response
+        if response.status_code != 200:
+            logger.error(f"API request failed with status code: {response.status_code}")
+            logger.error(f"Response: {response.text}")
+            return None
+        
+        # Return the audio data
+        audio_data = response.content
+        logger.info(f"Successfully received {len(audio_data)} bytes of audio data")
+        return audio_data
+        
+    except Exception as e:
+        logger.error(f"Error in direct API call: {str(e)}")
+        logger.error(f"Traceback: {traceback.format_exc()}")
+        return None
+
+def generate_music(prompt, duration_seconds=15.0, prompt_influence=0.7, output_file=None):
     """
     Generate music based on a prompt using ElevenLabs API
     
@@ -150,58 +203,28 @@ def generate_music(prompt: str, duration_seconds: float = 15.0,
         return None
     
     try:
-        # First do general content sanitization
-        sanitized_prompt = sanitize_prompt(prompt)
-        logger.info(f"Original prompt: {prompt}")
-        logger.info(f"Content sanitized prompt: {sanitized_prompt}")
+        logger.info(f"Attempting to generate music with direct API call")
+        audio_data = generate_music_direct_api(
+            prompt=prompt,
+            duration_seconds=duration_seconds,
+            prompt_influence=prompt_influence
+        )
         
-        # Then specifically sanitize for header use
-        header_safe_prompt = sanitize_header_value(sanitized_prompt)
-        logger.info(f"Header-safe prompt: {header_safe_prompt}")
-        
-        if not header_safe_prompt:
-            logger.error("Prompt is empty after sanitization")
+        if not audio_data:
+            logger.error("Direct API call failed")
             return None
+            
+        # Save to file if output_file is specified
+        if output_file:
+            try:
+                with open(output_file, "wb") as f:
+                    f.write(audio_data)
+                logger.info(f"Saved audio to {output_file}")
+            except Exception as e:
+                logger.error(f"Error saving audio file: {str(e)}")
         
-        logger.info(f"Generating music with header-safe prompt: {header_safe_prompt}")
-        logger.info(f"Duration: {duration_seconds} seconds, Influence: {prompt_influence}")
-        
-        try:
-            api_key = os.getenv('ELEVENLABS_API_KEY')
-            logger.info(f"Using API key that starts with: {api_key[:5]}***")
+        return audio_data
             
-            client = ElevenLabs(api_key=api_key)
-            logger.info("Successfully created ElevenLabs client")
-            
-            # Use the client's built-in method with header-safe prompt
-            response = client.text_to_sound_effects.convert(
-                text=header_safe_prompt,
-                prompt_influence=prompt_influence,
-                duration_seconds=duration_seconds,
-            )
-            
-            logger.info("Successfully received response from ElevenLabs")
-            
-            # Join all chunks into one bytes object
-            audio_data = b"".join(response)
-            logger.info(f"Generated audio data size: {len(audio_data)} bytes")
-            
-            # Save to file if output_file is specified
-            if output_file:
-                try:
-                    with open(output_file, "wb") as f:
-                        f.write(audio_data)
-                    logger.info(f"Saved audio to {output_file}")
-                except Exception as e:
-                    logger.error(f"Error saving audio file: {str(e)}")
-            
-            return audio_data
-                
-        except Exception as client_error:
-            logger.error(f"Error with ElevenLabs client: {str(client_error)}")
-            logger.error(f"Traceback: {traceback.format_exc()}")
-            return None
-        
     except Exception as e:
         logger.error(f"Error generating music: {str(e)}")
         logger.error(f"Error details: {type(e).__name__}")
