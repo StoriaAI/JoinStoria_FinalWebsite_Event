@@ -16,6 +16,7 @@ from elevenlabs import ElevenLabs
 import logging
 import traceback
 import requests
+import re
 
 # Set up logging - use stderr instead of stdout for logs
 logging.basicConfig(
@@ -68,6 +69,34 @@ def load_environment():
     logger.info(f"API key starts with: {api_key[:5]}***")
     return True
 
+def sanitize_prompt(prompt):
+    """
+    Sanitize the prompt to remove or replace problematic characters
+    
+    Args:
+        prompt (str): The original prompt
+        
+    Returns:
+        str: Sanitized prompt safe for API headers
+    """
+    if not prompt:
+        return ""
+    
+    # Remove or replace problematic characters
+    # Replace quotes with single quotes
+    prompt = prompt.replace('"', "'")
+    
+    # Remove any non-printable characters
+    prompt = ''.join(char for char in prompt if char.isprintable())
+    
+    # Remove any characters that might cause issues in headers
+    prompt = re.sub(r'[\\<>{}[\]^`]', '', prompt)
+    
+    # Trim whitespace and limit length
+    prompt = prompt.strip()
+    
+    return prompt
+
 def generate_music(prompt, duration_seconds=15.0, prompt_influence=0.7, output_file=None):
     """
     Generate music based on a prompt using ElevenLabs API
@@ -86,7 +115,12 @@ def generate_music(prompt, duration_seconds=15.0, prompt_influence=0.7, output_f
         return None
     
     try:
-        logger.info(f"Generating music with prompt: {prompt}")
+        # Sanitize the prompt before using it
+        sanitized_prompt = sanitize_prompt(prompt)
+        logger.info(f"Original prompt: {prompt}")
+        logger.info(f"Sanitized prompt: {sanitized_prompt}")
+        
+        logger.info(f"Generating music with sanitized prompt: {sanitized_prompt}")
         logger.info(f"Duration: {duration_seconds} seconds, Influence: {prompt_influence}")
         
         # Create ElevenLabs client with proper error handling
@@ -128,7 +162,7 @@ def generate_music(prompt, duration_seconds=15.0, prompt_influence=0.7, output_f
         logger.info("Sending request to ElevenLabs API for music generation...")
         try:
             response = client.text_to_sound_effects.convert(
-                text=prompt,
+                text=sanitized_prompt,
                 prompt_influence=prompt_influence,
                 duration_seconds=duration_seconds,
             )
