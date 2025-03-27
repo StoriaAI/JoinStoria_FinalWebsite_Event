@@ -128,49 +128,31 @@ def generate_music(prompt, duration_seconds=15.0, prompt_influence=0.7, output_f
             api_key = os.getenv('ELEVENLABS_API_KEY')
             logger.info(f"Using API key that starts with: {api_key[:5]}***")
             
-            client = ElevenLabs(
-                api_key=api_key,
-            )
+            # Create the client
+            client = ElevenLabs(api_key=api_key)
             logger.info("Successfully created ElevenLabs client")
             
-            # Test the API connection
-            try:
-                logger.info("Testing API connection...")
-                # Simple request to verify API connection
-                response = requests.get(
-                    "https://api.elevenlabs.io/v1/user",
-                    headers={"xi-api-key": api_key}
-                )
-                
-                if response.status_code == 200:
-                    logger.info("API connection test successful")
-                    subscription_data = response.json()
-                    logger.info(f"Subscription tier: {subscription_data.get('subscription', {}).get('tier', 'unknown')}")
-                    logger.info(f"Character limit: {subscription_data.get('subscription', {}).get('character_limit', 'unknown')}")
-                    logger.info(f"Character count: {subscription_data.get('subscription', {}).get('character_count', 'unknown')}")
-                else:
-                    logger.error(f"API connection test failed with status code: {response.status_code}")
-                    logger.error(f"Response: {response.text}")
-            except Exception as conn_test_error:
-                logger.error(f"API connection test failed: {str(conn_test_error)}")
-                
-        except Exception as client_error:
-            logger.error(f"Error creating ElevenLabs client: {str(client_error)}")
-            logger.error(f"Traceback: {traceback.format_exc()}")
-            return None
-        
-        logger.info("Sending request to ElevenLabs API for music generation...")
-        try:
-            response = client.text_to_sound_effects.convert(
-                text=sanitized_prompt,
-                prompt_influence=prompt_influence,
-                duration_seconds=duration_seconds,
-            )
+            # Make direct API call to sound effects endpoint
+            url = "https://api.elevenlabs.io/v1/sound-effects/generate"
+            headers = {
+                "xi-api-key": api_key,
+                "Content-Type": "application/json"
+            }
             
-            logger.info("Successfully received response from ElevenLabs")
+            data = {
+                "text": sanitized_prompt,
+                "duration_seconds": duration_seconds,
+                "prompt_influence": prompt_influence
+            }
             
-            # Join all chunks into one bytes object
-            audio_data = b"".join(response)
+            response = requests.post(url, headers=headers, json=data)
+            
+            if response.status_code != 200:
+                logger.error(f"API request failed with status code: {response.status_code}")
+                logger.error(f"Response: {response.text}")
+                return None
+            
+            audio_data = response.content
             logger.info(f"Generated audio data size: {len(audio_data)} bytes")
             
             # Save to file if output_file is specified
@@ -183,8 +165,9 @@ def generate_music(prompt, duration_seconds=15.0, prompt_influence=0.7, output_f
                     logger.error(f"Error saving audio file: {str(e)}")
             
             return audio_data
-        except Exception as api_error:
-            logger.error(f"Error calling ElevenLabs API: {str(api_error)}")
+                
+        except Exception as client_error:
+            logger.error(f"Error with ElevenLabs client: {str(client_error)}")
             logger.error(f"Traceback: {traceback.format_exc()}")
             return None
         
