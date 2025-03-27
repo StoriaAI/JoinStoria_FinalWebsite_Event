@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Storia</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .contact-section {
+      padding: 4rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 0.8rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #6c63ff;
+      box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .error-message {
+      color: #ff4444;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .submit-btn {
+      background: #6c63ff;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: #5a52d5;
+      transform: translateY(-2px);
+    }
+
+    .submit-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .form-status {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      display: none;
+    }
+    
+    .form-status.success {
+      display: block;
+      background-color: rgba(75, 181, 67, 0.1);
+      color: #4bb543;
+      border: 1px solid #4bb543;
+    }
+    
+    .form-status.error {
+      display: block;
+      background-color: rgba(255, 68, 68, 0.1);
+      color: #ff4444;
+      border: 1px solid #ff4444;
+    }
+    
+    .submit-btn.loading {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-gradient"></div>
+  <div class="grid-overlay"></div>
+
+  <header class="main-header">
+    <nav class="nav-container">
+      <a href="/" class="logo">
+        <img src="/assets/images/Storia-Logo.png" alt="Storia" class="logo-image">
+      </a>
+      <div class="nav-links">
+        <a href="/books">Discover</a>
+        <a href="/about">About</a>
+        <a href="/contact" class="active">Contact</a>
+        <% if (user) { %>
+          <a href="/profile">Profile</a>
+          <a href="/auth/logout">Logout</a>
+        <% } else { %>
+          <a href="/login">Login</a>
+        <% } %>
+        <a href="/">Home</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-container">
+          <h1>Contact Us</h1>
+          <p class="subtitle">Have a question or feedback? We'd love to hear from you!</p>
+          
+          <form id="contactForm" class="contact-form" onsubmit="return validateForm(event)">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+              <span class="error-message" id="nameError">Please enter a valid name</span>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+              <span class="error-message" id="emailError">Please enter a valid email address</span>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+              <span class="error-message" id="messageError">Please enter your message</span>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+            <div id="formStatus" class="form-status"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    async function validateForm(event) {
+      event.preventDefault();
+      let isValid = true;
+      
+      // Name validation
+      const name = document.getElementById('name').value.trim();
+      const nameError = document.getElementById('nameError');
+      if (!/^[a-zA-Z\s]{2,50}$/.test(name)) {
+        nameError.style.display = 'block';
+        isValid = false;
+      } else {
+        nameError.style.display = 'none';
+      }
+      
+      // Email validation
+      const email = document.getElementById('email').value.trim();
+      const emailError = document.getElementById('emailError');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailError.style.display = 'block';
+        isValid = false;
+      } else {
+        emailError.style.display = 'none';
+      }
+      
+      // Message validation
+      const message = document.getElementById('message').value.trim();
+      const messageError = document.getElementById('messageError');
+      if (message.length < 10) {
+        messageError.style.display = 'block';
+        isValid = false;
+      } else {
+        messageError.style.display = 'none';
+      }
+      
+      if (isValid) {
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.getElementById('formStatus');
+        
+        // Disable button and show loading state
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        submitBtn.textContent = 'Sending...';
+        
+        try {
+          const response = await fetch('/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, email, message })
+          });
+          
+          const data = await response.json();
+          
+          formStatus.textContent = data.message;
+          formStatus.className = 'form-status ' + (data.success ? 'success' : 'error');
+          
+          if (data.success) {
+            document.getElementById('contactForm').reset();
+          }
+        } catch (error) {
+          formStatus.textContent = 'An error occurred. Please try again later.';
+          formStatus.className = 'form-status error';
+        } finally {
+          // Reset button state
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('loading');
+          submitBtn.textContent = 'Send Message';
+        }
+      }
+      
+      return false;
+    }
+  </script>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="/assets/images/Storia-Logo.png" alt="Storia" class="footer-logo-image">
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-column">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="/books">Browse Books</a></li>
+              <li><a href="/books?category=fiction">Fiction</a></li>
+              <li><a href="/books?category=non-fiction">Non-Fiction</a></li>
+              <li><a href="/books?category=classics">Classics</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html> 
