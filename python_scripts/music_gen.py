@@ -103,12 +103,6 @@ def sanitize_header_value(prompt):
     """
     Sanitize a string specifically for use in HTTP headers.
     Follows RFC 7230 header field guidelines.
-    
-    Args:
-        prompt (str): The prompt to sanitize
-        
-    Returns:
-        str: A header-safe string
     """
     if not prompt:
         return ""
@@ -119,11 +113,16 @@ def sanitize_header_value(prompt):
     # Convert to ASCII, dropping non-ASCII characters
     prompt = prompt.encode('ascii', errors='ignore').decode()
     
-    # Remove quotes and other problematic characters
-    prompt = ''.join(c for c in prompt if c.isprintable() and c not in '"\\')
+    # Strict filtering of allowed characters
+    allowed_chars = set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,!?-_")
+    prompt = ''.join(char for char in prompt if char in allowed_chars)
     
     # Collapse multiple spaces and trim
-    prompt = ' '.join(prompt.split())
+    prompt = ' '.join(prompt.split()).strip()
+    
+    # Ensure minimum length
+    if not prompt:
+        return "none"
     
     return prompt
 
