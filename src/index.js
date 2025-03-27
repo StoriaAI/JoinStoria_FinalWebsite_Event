@@ -96,11 +96,19 @@ if (isProduction) {
   
   // Set cache headers for static assets
   app.use(express.static(path.join(__dirname, '../public'), {
-    maxAge: cacheDuration
+    maxAge: cacheDuration,
+    dotfiles: 'allow' // Allow serving dotfiles like .well-known
+  }));
+  
+  // Fallback static file serving for Vercel
+  app.use(express.static('public', {
+    maxAge: cacheDuration,
+    dotfiles: 'allow'
   }));
 } else {
   // Development mode - no caching
   app.use(express.static(path.join(__dirname, '../public')));
+  app.use(express.static('public'));
 }
 
 // Middleware
