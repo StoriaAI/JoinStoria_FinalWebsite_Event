@@ -82,12 +82,22 @@ def sanitize_prompt(prompt):
     if not prompt:
         return ""
     
+    # First, handle any potential newlines or quotes that might come from piping
+    prompt = prompt.replace('\n', ' ').replace('\r', ' ')
+    
     # Only allow basic ASCII characters, letters, numbers, and basic punctuation
     allowed_chars = set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,!?-_")
     prompt = ''.join(char for char in prompt if char in allowed_chars)
     
     # Trim whitespace and limit length
     prompt = prompt.strip()
+    
+    # Ensure the prompt is ASCII-safe for headers
+    try:
+        prompt.encode('ascii')
+    except UnicodeEncodeError:
+        # If there are any non-ASCII characters, remove them
+        prompt = ''.join(char for char in prompt if ord(char) < 128)
     
     return prompt
 
@@ -114,6 +124,14 @@ def generate_music(prompt, duration_seconds=15.0, prompt_influence=0.7, output_f
         logger.info(f"Original prompt: {prompt}")
         logger.info(f"Sanitized prompt: {sanitized_prompt}")
         
+        # Additional header safety check
+        try:
+            header_value = sanitized_prompt.encode('ascii', errors='strict').decode('ascii')
+            logger.info(f"Header-safe prompt value: {header_value}")
+        except UnicodeError as e:
+            logger.error(f"Prompt contains non-ASCII characters after sanitization: {e}")
+            return None
+        
         logger.info(f"Generating music with sanitized prompt: {sanitized_prompt}")
         logger.info(f"Duration: {duration_seconds} seconds, Influence: {prompt_influence}")
         
@@ -125,9 +143,9 @@ def generate_music(prompt, duration_seconds=15.0, prompt_influence=0.7, output_f
             client = ElevenLabs(api_key=api_key)
             logger.info("Successfully created ElevenLabs client")
             
-            # Use the client's built-in method
+            # Use the client's built-in method with verified ASCII-safe prompt
             response = client.text_to_sound_effects.convert(
-                text=sanitized_prompt,
+                text=header_value,  # Use the verified ASCII-safe value
                 prompt_influence=prompt_influence,
                 duration_seconds=duration_seconds,
             )
