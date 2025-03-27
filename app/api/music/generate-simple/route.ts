@@ -5,8 +5,20 @@ import { promisify } from 'util';
 
 export async function POST(req: NextRequest) {
   try {
-    const prompt = req.headers.get('X-Ambiance-Prompt');
-    
+    // Check for API key
+    const apiKey = process.env.ELEVENLABS_API_KEY;
+    if (!apiKey) {
+      console.error('ELEVENLABS_API_KEY not found in environment variables');
+      return NextResponse.json(
+        { error: 'API key not configured' },
+        { status: 401 }
+      );
+    }
+
+    // Get parameters from the request body
+    const body = await req.json();
+    const { prompt, duration = 15, influence = 0.7 } = body;
+
     if (!prompt) {
       return NextResponse.json(
         { error: 'No prompt provided' },
@@ -14,7 +26,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Double-check sanitization on the backend
+    // Sanitize the prompt
     const sanitizedPrompt = sanitizeHeaderValue(prompt);
     
     if (!sanitizedPrompt) {
@@ -24,21 +36,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Get other parameters from the request body
-    const body = await req.json();
-    const duration = body.duration || 15;
-    const influence = body.influence || 0.7;
-
     // Call your Python script or service here
     const pythonScriptPath = process.env.MUSIC_GEN_SCRIPT || 'python_scripts/music_gen.py';
     
     return new Promise((resolve, reject) => {
+      // Pass the API key as an environment variable to the Python process
+      const env = {
+        ...process.env,
+        ELEVENLABS_API_KEY: apiKey
+      };
+
       const pythonProcess = spawn('python3', [
         pythonScriptPath,
         '--prompt', sanitizedPrompt,
         '--duration', duration.toString(),
         '--influence', influence.toString()
-      ]);
+      ], { env });
 
       const chunks: Buffer[] = [];
 

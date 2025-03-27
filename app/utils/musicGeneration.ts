@@ -28,11 +28,11 @@ export async function generateMusic(prompt: string, duration: number = 15, influ
       throw new Error('Prompt is empty after sanitization');
     }
 
+    // Instead of using a custom header, send the prompt in the body
     const response = await fetch('/api/music/generate-simple', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'X-Ambiance-Prompt': sanitizedPrompt
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         prompt: sanitizedPrompt,
@@ -43,6 +43,9 @@ export async function generateMusic(prompt: string, duration: number = 15, influ
 
     if (!response.ok) {
       const error = await response.json();
+      if (response.status === 401) {
+        throw new Error('API key is invalid or not provided. Please check your configuration.');
+      }
       throw new Error(error.message || 'Failed to generate music');
     }
 
