@@ -126,7 +126,12 @@ app.use((req, res, next) => {
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../views'));
+
+// Set views directory based on environment
+const viewsPath = process.env.VERCEL 
+  ? path.join(process.cwd(), 'views')  // Vercel environment
+  : path.join(__dirname, '../views');   // Local environment
+app.set('views', viewsPath);
 
 // Simple in-memory cache for API responses
 const cache = {

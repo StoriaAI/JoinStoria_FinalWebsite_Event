@@ -1,0 +1,585 @@
+"TimeUTC","timestampInMs","requestPath","requestMethod","requestQueryString","responseStatusCode","requestId","requestUserAgent","level","environment","branch","vercelCache","type","function","host","deploymentDomain","deploymentId","durationMs","region","maxMemoryUsed","memorySize","message","projectId"
+"2025-03-27 01:20:48",1743038448886,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.png","GET","",-1,"qkczq-1743038448834-049ccee845ef","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at IncomingMessage.next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at done (/var/task/node_modules/express/lib/response.js:1044:25)
+    at Function.render (/var/task/node_modules/express/lib/application.js:599:14)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:48",1743038448885,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.png","GET","",-1,"qkczq-1743038448834-049ccee845ef","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1676:19
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:328:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at /var/task/src/index.js:124:3
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'error',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:48",1743038448872,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.png","GET","",500,"qkczq-1743038448834-049ccee845ef","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",6,"iad1",115,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:46",1743038446734,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.png","GET","",-1,"xmwjd-1743038446679-781d867dd5c2","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at IncomingMessage.next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at done (/var/task/node_modules/express/lib/response.js:1044:25)
+    at Function.render (/var/task/node_modules/express/lib/application.js:599:14)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:46",1743038446733,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.png","GET","",-1,"xmwjd-1743038446679-781d867dd5c2","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1676:19
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:328:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at /var/task/src/index.js:124:3
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'error',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:46",1743038446717,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.png","GET","",500,"xmwjd-1743038446679-781d867dd5c2","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",5,"iad1",115,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:45",1743038445644,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.png","GET","",-1,"dkplt-1743038445564-3be150e4a2a1","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at IncomingMessage.next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at done (/var/task/node_modules/express/lib/response.js:1044:25)
+    at Function.render (/var/task/node_modules/express/lib/application.js:599:14)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:45",1743038445620,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.png","GET","",-1,"dkplt-1743038445564-3be150e4a2a1","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1676:19
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:328:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at /var/task/src/index.js:124:3
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'error',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:45",1743038445605,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.png","GET","",500,"dkplt-1743038445564-3be150e4a2a1","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",39,"iad1",115,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:45",1743038445525,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",-1,"xgmf5-1743038445473-39213d35c832","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at IncomingMessage.next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at done (/var/task/node_modules/express/lib/response.js:1044:25)
+    at Function.render (/var/task/node_modules/express/lib/application.js:599:14)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:45",1743038445524,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",-1,"xgmf5-1743038445473-39213d35c832","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1676:19
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:328:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at /var/task/src/index.js:124:3
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'error',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:45",1743038445508,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",500,"xgmf5-1743038445473-39213d35c832","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",5,"iad1",115,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:43",1743038443397,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",-1,"qm6g2-1743038443321-30b5114e79a4","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at IncomingMessage.next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at done (/var/task/node_modules/express/lib/response.js:1044:25)
+    at Function.render (/var/task/node_modules/express/lib/application.js:599:14)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:43",1743038443368,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",-1,"qm6g2-1743038443321-30b5114e79a4","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1676:19
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:328:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at /var/task/src/index.js:124:3
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'error',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:43",1743038443355,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",500,"qm6g2-1743038443321-30b5114e79a4","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",33,"iad1",115,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:42",1743038442278,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",-1,"w9v5f-1743038442223-65f21bd00173","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at IncomingMessage.next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at done (/var/task/node_modules/express/lib/response.js:1044:25)
+    at Function.render (/var/task/node_modules/express/lib/application.js:599:14)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:42",1743038442277,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",-1,"w9v5f-1743038442223-65f21bd00173","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1676:19
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:328:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at /var/task/src/index.js:124:3
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'error',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:42",1743038442262,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",500,"w9v5f-1743038442223-65f21bd00173","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",6,"iad1",115,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:42",1743038442103,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"qm6g2-1743038442012-c105e7f5f151","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:67:12)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:42",1743038442082,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"qm6g2-1743038442012-c105e7f5f151","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""index"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:177:7
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at next (/var/task/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/var/task/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at /var/task/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'index',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:42",1743038442054,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",500,"qm6g2-1743038442012-c105e7f5f151","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",38,"iad1",115,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:41",1743038441000,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"qm6g2-1743038440833-b3d3ad171098","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:67:12)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:40",1743038440948,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"qm6g2-1743038440833-b3d3ad171098","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""index"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:177:7
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at next (/var/task/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/var/task/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at /var/task/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'index',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:40",1743038440871,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",500,"qm6g2-1743038440833-b3d3ad171098","Mozilla/5.0 (Windows NT 10.0; rv:135.0) Gecko/20100101 Firefox/135.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",111,"iad1",115,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:28",1743038428256,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",-1,"rhnjc-1743038428198-dc78ef22d8ce","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at IncomingMessage.next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at done (/var/task/node_modules/express/lib/response.js:1044:25)
+    at Function.render (/var/task/node_modules/express/lib/application.js:599:14)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:28",1743038428254,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",-1,"rhnjc-1743038428198-dc78ef22d8ce","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1676:19
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:328:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at /var/task/src/index.js:124:3
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'error',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:28",1743038428234,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",500,"rhnjc-1743038428198-dc78ef22d8ce","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",7,"iad1",138,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:28",1743038428118,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"rhnjc-1743038427975-5d66a80232a3","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:67:12)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:28",1743038428117,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"rhnjc-1743038427975-5d66a80232a3","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""index"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:177:7
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at next (/var/task/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/var/task/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at /var/task/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'index',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:28",1743038428102,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",500,"rhnjc-1743038427975-5d66a80232a3","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",6,"iad1",138,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:27",1743038427826,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"4wwxv-1743038427773-06930c0326e8","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:67:12)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:27",1743038427825,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"4wwxv-1743038427773-06930c0326e8","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""index"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:177:7
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at next (/var/task/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/var/task/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at /var/task/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'index',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:27",1743038427809,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",500,"4wwxv-1743038427773-06930c0326e8","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",6,"iad1",138,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:27",1743038427242,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",-1,"zv4t4-1743038427165-abb267c74751","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at IncomingMessage.next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at done (/var/task/node_modules/express/lib/response.js:1044:25)
+    at Function.render (/var/task/node_modules/express/lib/application.js:599:14)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:27",1743038427218,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",-1,"zv4t4-1743038427165-abb267c74751","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1676:19
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:328:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at /var/task/src/index.js:124:3
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'error',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:27",1743038427200,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/favicon.ico","GET","",500,"zv4t4-1743038427165-abb267c74751","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",29,"iad1",138,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:27",1743038427105,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"zv4t4-1743038427053-d9cd354decb1","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:67:12)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:27",1743038427105,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"zv4t4-1743038427053-d9cd354decb1","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""index"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:177:7
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at next (/var/task/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/var/task/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at /var/task/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'index',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:27",1743038427090,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",500,"zv4t4-1743038427053-d9cd354decb1","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",7,"iad1",138,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:26",1743038426943,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"9h4q6-1743038426892-cbd7a03ca6d7","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:67:12)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:26",1743038426941,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"9h4q6-1743038426892-cbd7a03ca6d7","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""index"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:177:7
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at next (/var/task/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/var/task/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at /var/task/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'index',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:26",1743038426925,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",500,"9h4q6-1743038426892-cbd7a03ca6d7","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",7,"iad1",138,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:25",1743038425647,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"qr4zf-1743038425589-2918c9dd0c6d","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:67:12)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:25",1743038425645,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"qr4zf-1743038425589-2918c9dd0c6d","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""index"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:177:7
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at next (/var/task/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/var/task/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at /var/task/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'index',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:25",1743038425632,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",500,"qr4zf-1743038425589-2918c9dd0c6d","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",7,"iad1",138,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:24",1743038424777,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"9h4q6-1743038424626-4a523c587135","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:67:12)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:24",1743038424775,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"9h4q6-1743038424626-4a523c587135","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""index"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:177:7
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at next (/var/task/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/var/task/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at /var/task/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'index',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:24",1743038424754,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",500,"9h4q6-1743038424626-4a523c587135","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",8,"iad1",138,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:24",1743038424625,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"sxgdz-1743038423236-b34083934e42","vercel-screenshot/1.0","info","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Loading production environment variables...
+Environment: production
+ElevenLabs API Key present: Yes
+ElevenLabs API Key length: 51
+ElevenLabs API Key prefix: sk_c4...
+Warning: connect.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and will not scale past a single process.","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:24",1743038424618,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"sxgdz-1743038423236-b34083934e42","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:67:12)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:24",1743038424481,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"sxgdz-1743038423236-b34083934e42","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""index"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:177:7
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at next (/var/task/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/var/task/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at /var/task/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'index',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:23",1743038423632,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"l2fbt-1743038423208-4015426fd3f7","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Error: Failed to lookup view ""error"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:1701:19
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:71:5)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)
+    at /var/task/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10)
+    at Layer.handle_error (/var/task/node_modules/express/lib/router/layer.js:67:12)
+    at trim_prefix (/var/task/node_modules/express/lib/router/index.js:326:13)","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:23",1743038423486,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",-1,"l2fbt-1743038423208-4015426fd3f7","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",-1,"iad1",-1,-1,"Server error: Error: Failed to lookup view ""index"" in views directory ""/var/task/views""
+    at Function.render (/var/task/node_modules/express/lib/application.js:597:17)
+    at ServerResponse.render (/var/task/node_modules/express/lib/response.js:1049:7)
+    at /var/task/src/index.js:177:7
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at next (/var/task/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/var/task/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/var/task/node_modules/express/lib/router/layer.js:95:5)
+    at /var/task/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/var/task/node_modules/express/lib/router/index.js:346:12)
+    at next (/var/task/node_modules/express/lib/router/index.js:280:10) {
+  view: View {
+    defaultEngine: 'ejs',
+    ext: '.ejs',
+    name: 'index',
+    root: '/var/task/views',
+    engine: [Function (anonymous)],
+    path: undefined
+  }
+}","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:23",1743038423450,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",500,"sxgdz-1743038423236-b34083934e42","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",170,"iad1",138,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
+"2025-03-27 01:20:23",1743038423446,"joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app/","GET","",500,"l2fbt-1743038423208-4015426fd3f7","vercel-screenshot/1.0","error","production","","MISS","lambda","/src/index.js","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","joinstoria-i6f7qd2r7-storias-projects-661a5502.vercel.app","dpl_7djagCQEB9ot6dWeRbwQ9LN56ziU",168,"iad1",128,1769,"","prj_Z1tCpHe5A27W2dXsFI7ufu1huMC1"
