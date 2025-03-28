@@ -1,99 +1,82 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sanitizeHeaderValue } from '../../../utils/musicGeneration';
-import { spawn } from 'child_process';
-import { promisify } from 'util';
+import { getPreloadedMusicForBookPage } from '../../../utils/bookMusicMapping';
+import fs from 'fs';
+import path from 'path';
 
-export async function POST(req: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
-    // Check for API key
-    const apiKey = process.env.ELEVENLABS_API_KEY;
-    if (!apiKey) {
-      console.error('ELEVENLABS_API_KEY not found in environment variables');
-      return NextResponse.json(
-        { error: 'API key not configured' },
-        { status: 401 }
-      );
-    }
+    // Parse the request body
+    const body = await request.json();
+    const { text, duration, page, bookId } = body;
 
-    // Get parameters from the request body
-    const body = await req.json();
-    const { prompt, duration = 15, influence = 0.7 } = body;
+    // Define response headers
+    const headers = new Headers();
+    headers.set('Content-Type', 'audio/mpeg');
+    headers.set('X-Detected-Mood', 'custom');
+    headers.set('X-Ambiance-Prompt', 'Book ambiance');
 
-    if (!prompt) {
-      return NextResponse.json(
-        { error: 'No prompt provided' },
-        { status: 400 }
-      );
-    }
-
-    // Sanitize the prompt
-    const sanitizedPrompt = sanitizeHeaderValue(prompt);
-    
-    if (!sanitizedPrompt) {
-      return NextResponse.json(
-        { error: 'Invalid prompt after sanitization' },
-        { status: 400 }
-      );
-    }
-
-    // Call your Python script or service here
-    const pythonScriptPath = process.env.MUSIC_GEN_SCRIPT || 'python_scripts/music_gen.py';
-    
-    return new Promise((resolve, reject) => {
-      // Pass the API key as an environment variable to the Python process
-      const env = {
-        ...process.env,
-        ELEVENLABS_API_KEY: apiKey
-      };
-
-      const pythonProcess = spawn('python3', [
-        pythonScriptPath,
-        '--prompt', sanitizedPrompt,
-        '--duration', duration.toString(),
-        '--influence', influence.toString()
-      ], { env });
-
-      const chunks: Buffer[] = [];
-
-      pythonProcess.stdout.on('data', (data) => {
-        chunks.push(Buffer.from(data));
-      });
-
-      pythonProcess.stderr.on('data', (data) => {
-        console.error(`Python script error: ${data}`);
-      });
-
-      pythonProcess.on('close', (code) => {
-        if (code !== 0) {
-          reject(new Error(`Python script exited with code ${code}`));
-          return;
-        }
-
-        const audioBuffer = Buffer.concat(chunks);
+    // Check if we have preloaded music for this book and page
+    if (bookId && page) {
+      const musicPath = getPreloadedMusicForBookPage(bookId, page);
+      
+      if (musicPath) {
+        // Log that we're using preloaded music
+        console.log(`Using preloaded music for book ${bookId}, page ${page}: ${musicPath}`);
         
-        resolve(new NextResponse(audioBuffer, {
-          headers: {
-            'Content-Type': 'audio/mpeg',
-            'Cache-Control': 'no-cache'
+        try {
+          // Get the absolute path to the music file
+          const absolutePath = path.join(process.cwd(), 'public', musicPath.substring(1));
+          
+          // Check if the file exists
+          if (fs.existsSync(absolutePath)) {
+            // Read the file
+            const musicBuffer = fs.readFileSync(absolutePath);
+            
+            // Update headers to indicate we're using preloaded music
+            headers.set('X-Music-Source', 'preloaded');
+            headers.set('X-Detected-Mood', 'preloaded');
+            headers.set('X-Ambiance-Prompt', `Preloaded music for page ${page}`);
+            
+            // Return the file
+            return new NextResponse(musicBuffer, {
+              status: 200,
+              headers
+            });
+          } else {
+            console.error(`Preloaded music file not found: ${absolutePath}`);
           }
-        }));
-      });
+        } catch (error) {
+          console.error('Error reading preloaded music file:', error);
+        }
+      }
+    }
 
-      pythonProcess.on('error', (err) => {
-        reject(err);
+    // If we don't have preloaded music or something went wrong,
+    // fall back to the generated music or a fallback audio file
+    
+    // For this implementation, we'll use a fallback audio file
+    const fallbackPath = path.join(process.cwd(), 'public', 'audio', 'fallback-neutral.mp3');
+    
+    if (fs.existsSync(fallbackPath)) {
+      const fallbackBuffer = fs.readFileSync(fallbackPath);
+      
+      headers.set('X-Music-Source', 'fallback');
+      
+      return new NextResponse(fallbackBuffer, {
+        status: 200,
+        headers
       });
-    }).catch((error) => {
-      console.error('Error in music generation:', error);
-      return NextResponse.json(
-        { error: 'Failed to generate music' },
-        { status: 500 }
-      );
-    });
+    }
 
-  } catch (error) {
-    console.error('Error in music generation:', error);
+    // If even the fallback doesn't exist, return an error
     return NextResponse.json(
-      { error: 'Failed to generate music' },
+      { error: 'Failed to generate or find appropriate music' },
+      { status: 500 }
+    );
+  } catch (error) {
+    console.error('Error in music generation API:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

@@ -3,7 +3,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { generateMusic } from '../utils/musicGeneration';
 
-export default function MusicPlayer() {
+interface MusicPlayerProps {
+  bookId?: string;
+  pageNumber?: string | number;
+}
+
+export default function MusicPlayer({ bookId, pageNumber }: MusicPlayerProps = {}) {
   const [prompt, setPrompt] = useState('');
   const [duration, setDuration] = useState(15);
   const [influence, setInfluence] = useState(0.7);
@@ -22,7 +27,7 @@ export default function MusicPlayer() {
   }, [audioUrl]);
 
   const handleGenerateMusic = async () => {
-    if (!prompt.trim()) {
+    if (!prompt.trim() && !bookId) {
       setError('Please enter a prompt');
       return;
     }
@@ -36,8 +41,8 @@ export default function MusicPlayer() {
         URL.revokeObjectURL(audioUrl);
       }
       
-      // Generate the music
-      const audioBlob = await generateMusic(prompt, duration, influence);
+      // Generate the music, passing bookId and pageNumber if available
+      const audioBlob = await generateMusic(prompt, duration, influence, bookId, pageNumber);
       
       // Create a URL for the audio blob
       const url = URL.createObjectURL(audioBlob);

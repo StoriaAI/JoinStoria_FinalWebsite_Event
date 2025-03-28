@@ -2,6 +2,8 @@
  * Utility functions for music generation and header sanitization
  */
 
+import { getPreloadedMusicForBookPage } from './bookMusicMapping';
+
 /**
  * Sanitizes a string for safe use in HTTP headers
  * Follows RFC 7230 header field guidelines
@@ -34,11 +36,55 @@ export function encodeToBase64(str: string): string {
  */
 
 /**
+ * Loads preloaded music for a specific book and page
+ * @param bookId - The ID of the book
+ * @param pageNumber - The page number in the book
+ * @returns A Promise resolving to an audio Blob if preloaded music exists, or null if none
+ */
+export async function loadPreloadedMusic(bookId: string, pageNumber: string | number): Promise<Blob | null> {
+  const musicPath = getPreloadedMusicForBookPage(bookId, pageNumber);
+  
+  if (!musicPath) {
+    return null;
+  }
+  
+  try {
+    const response = await fetch(musicPath);
+    
+    if (!response.ok) {
+      console.error(`Failed to load preloaded music: ${response.status} ${response.statusText}`);
+      return null;
+    }
+    
+    return await response.blob();
+  } catch (error) {
+    console.error('Error loading preloaded music:', error);
+    return null;
+  }
+}
+
+/**
  * Generates music based on the provided prompt
  * Uses URLSearchParams to avoid header issues
  */
-export async function generateMusic(prompt: string, duration: number = 15, influence: number = 0.7) {
+export async function generateMusic(
+  prompt: string, 
+  duration: number = 15, 
+  influence: number = 0.7,
+  bookId?: string,
+  pageNumber?: string | number
+) {
   try {
+    // If bookId and pageNumber are provided, check if we have preloaded music
+    if (bookId && pageNumber !== undefined) {
+      const preloadedMusic = await loadPreloadedMusic(bookId, pageNumber);
+      
+      if (preloadedMusic) {
+        console.log(`Using preloaded music for book ${bookId}, page ${pageNumber}`);
+        return preloadedMusic;
+      }
+    }
+
     // Create URLSearchParams
     const params = new URLSearchParams();
     params.append('prompt', encodeURIComponent(prompt));

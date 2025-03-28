@@ -258,6 +258,26 @@
             musicMood.textContent = 'Generating music...';
           }
           
+          // Get book ID and current page number for potential hard-coded music
+          const bookId = '<%= book.id %>';  // Get book ID from EJS template
+          const currentPage = currentPageNumber;
+          
+          // Store the current page number to avoid regenerating music for the same page
+          const lastGeneratedPage = localStorage.getItem('storia-last-music-page');
+          
+          // Check if we've already generated music for this page and it's still playing
+          if (lastGeneratedPage === currentPage.toString() && audioElement.src && !audioElement.ended && !audioElement.paused) {
+            console.log('Music already playing for this page, skipping generation');
+            isMusicGenerating = false;
+            
+            // Just update the UI to show it's playing
+            if (musicStatus) {
+              musicStatus.classList.remove('hidden');
+            }
+            
+            return;
+          }
+          
           // Get the current page content
           const pageContent = document.querySelector('.page-content');
           
@@ -277,23 +297,6 @@
           // Ensure we have enough text to generate music
           if (textContent.trim().length < 10) {
             throw new Error('Not enough text content to generate music');
-          }
-          
-          // Store the current page number to avoid regenerating music for the same page
-          const currentPage = currentPageNumber;
-          const lastGeneratedPage = localStorage.getItem('storia-last-music-page');
-          
-          // Check if we've already generated music for this page and it's still playing
-          if (lastGeneratedPage === currentPage.toString() && audioElement.src && !audioElement.ended && !audioElement.paused) {
-            console.log('Music already playing for this page, skipping generation');
-            isMusicGenerating = false;
-            
-            // Just update the UI to show it's playing
-            if (musicStatus) {
-              musicStatus.classList.remove('hidden');
-            }
-            
-            return;
           }
           
           // Trim text to a reasonable length to avoid large requests
@@ -325,7 +328,8 @@
             body: JSON.stringify({ 
               text: trimmedText,
               duration: 15.0,
-              page: currentPage
+              page: currentPage,
+              bookId: bookId // Pass book ID for potential hard-coded music
             })
           });
           
