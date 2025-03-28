@@ -17,6 +17,13 @@ export default function MusicPlayer({ bookId, pageNumber }: MusicPlayerProps = {
   const [audioUrl, setAudioUrl] = useState('');
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  // Log bookId and pageNumber whenever they change
+  useEffect(() => {
+    if (bookId || pageNumber) {
+      console.log(`MusicPlayer: Received bookId=${bookId}, pageNumber=${pageNumber}`);
+    }
+  }, [bookId, pageNumber]);
+
   // Clean up audio URL when component unmounts
   useEffect(() => {
     return () => {
@@ -36,6 +43,8 @@ export default function MusicPlayer({ bookId, pageNumber }: MusicPlayerProps = {
     setError('');
     
     try {
+      console.log(`MusicPlayer: Generating music with bookId=${bookId}, pageNumber=${pageNumber}`);
+      
       // Clean up previous audio URL if it exists
       if (audioUrl) {
         URL.revokeObjectURL(audioUrl);

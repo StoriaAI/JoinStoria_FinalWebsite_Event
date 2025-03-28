@@ -42,23 +42,30 @@ export function encodeToBase64(str: string): string {
  * @returns A Promise resolving to an audio Blob if preloaded music exists, or null if none
  */
 export async function loadPreloadedMusic(bookId: string, pageNumber: string | number): Promise<Blob | null> {
+  console.log(`musicGeneration: Checking for preloaded music for book ${bookId}, page ${pageNumber}`);
+  
   const musicPath = getPreloadedMusicForBookPage(bookId, pageNumber);
+  console.log(`musicGeneration: Music path returned: ${musicPath}`);
   
   if (!musicPath) {
+    console.log(`musicGeneration: No preloaded music found for book ${bookId}, page ${pageNumber}`);
     return null;
   }
   
   try {
+    console.log(`musicGeneration: Attempting to fetch music from ${musicPath}`);
     const response = await fetch(musicPath);
     
     if (!response.ok) {
-      console.error(`Failed to load preloaded music: ${response.status} ${response.statusText}`);
+      console.error(`musicGeneration: Failed to load preloaded music: ${response.status} ${response.statusText}`);
       return null;
     }
     
-    return await response.blob();
+    const blob = await response.blob();
+    console.log(`musicGeneration: Successfully loaded preloaded music, size: ${blob.size} bytes`);
+    return blob;
   } catch (error) {
-    console.error('Error loading preloaded music:', error);
+    console.error('musicGeneration: Error loading preloaded music:', error);
     return null;
   }
 }
@@ -75,14 +82,21 @@ export async function generateMusic(
   pageNumber?: string | number
 ) {
   try {
+    console.log(`musicGeneration: generateMusic called with bookId=${bookId}, pageNumber=${pageNumber}`);
+    
     // If bookId and pageNumber are provided, check if we have preloaded music
     if (bookId && pageNumber !== undefined) {
+      console.log(`musicGeneration: Checking for preloaded music for book ${bookId}, page ${pageNumber}`);
       const preloadedMusic = await loadPreloadedMusic(bookId, pageNumber);
       
       if (preloadedMusic) {
-        console.log(`Using preloaded music for book ${bookId}, page ${pageNumber}`);
+        console.log(`musicGeneration: Using preloaded music for book ${bookId}, page ${pageNumber}`);
         return preloadedMusic;
+      } else {
+        console.log(`musicGeneration: No preloaded music found, falling back to generated music`);
       }
+    } else {
+      console.log(`musicGeneration: No bookId or pageNumber provided, using generated music`);
     }
 
     // Create URLSearchParams

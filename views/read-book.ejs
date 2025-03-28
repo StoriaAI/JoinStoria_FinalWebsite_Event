@@ -262,6 +262,39 @@
           const bookId = '<%= book.id %>';  // Get book ID from EJS template
           const currentPage = currentPageNumber;
           
+          console.log(`DEBUG: Attempting to generate music for book ID ${bookId} and page ${currentPage}`);
+          
+          // Make sure bookId is a string and currentPage is a number
+          const stringBookId = String(bookId); // Ensure bookId is a string
+          const numPageNumber = Number(currentPage); // Ensure pageNumber is a number
+          
+          console.log(`DEBUG: Standardized values - bookId (${typeof stringBookId}): ${stringBookId}, page (${typeof numPageNumber}): ${numPageNumber}`);
+          
+          // Check for hard-coded music first - direct API call for diagnostic purposes
+          try {
+            const checkResponse = await fetch('/api/music/generate-simple', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ 
+                text: "Checking for preloaded music",
+                duration: 15.0,
+                page: currentPage,
+                bookId: stringBookId
+              })
+            });
+            
+            // See what headers we got back for diagnostics
+            console.log('Music API headers:', {
+              source: checkResponse.headers.get('X-Music-Source'),
+              mood: checkResponse.headers.get('X-Detected-Mood'),
+              ambiance: checkResponse.headers.get('X-Ambiance-Prompt')
+            });
+          } catch (checkError) {
+            console.error('Error checking for preloaded music:', checkError);
+          }
+          
           // Store the current page number to avoid regenerating music for the same page
           const lastGeneratedPage = localStorage.getItem('storia-last-music-page');
           
@@ -329,7 +362,7 @@
               text: trimmedText,
               duration: 15.0,
               page: currentPage,
-              bookId: bookId // Pass book ID for potential hard-coded music
+              bookId: stringBookId // Pass standardized book ID for potential hard-coded music
             })
           });
           
