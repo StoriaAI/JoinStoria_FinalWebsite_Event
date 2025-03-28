@@ -262,37 +262,104 @@
           const bookId = '<%= book.id %>';  // Get book ID from EJS template
           const currentPage = currentPageNumber;
           
-          console.log(`DEBUG: Attempting to generate music for book ID ${bookId} and page ${currentPage}`);
+          console.log(`DEBUG: Attempting to generate music for book ID [${bookId}] (type: ${typeof bookId}) and page [${currentPage}] (type: ${typeof currentPage})`);
           
-          // Make sure bookId is a string and currentPage is a number
-          const stringBookId = String(bookId); // Ensure bookId is a string
-          const numPageNumber = Number(currentPage); // Ensure pageNumber is a number
+          // Force conversion to strings to ensure consistent types
+          const bookIdStr = String(bookId).trim();
+          const pageStr = String(currentPage).trim();
           
-          console.log(`DEBUG: Standardized values - bookId (${typeof stringBookId}): ${stringBookId}, page (${typeof numPageNumber}): ${numPageNumber}`);
+          console.log(`DEBUG: Converted values - bookId: [${bookIdStr}], page: [${pageStr}]`);
           
-          // Check for hard-coded music first - direct API call for diagnostic purposes
-          try {
-            const checkResponse = await fetch('/api/music/generate-simple', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ 
-                text: "Checking for preloaded music",
-                duration: 15.0,
-                page: currentPage,
-                bookId: stringBookId
-              })
-            });
-            
-            // See what headers we got back for diagnostics
-            console.log('Music API headers:', {
-              source: checkResponse.headers.get('X-Music-Source'),
-              mood: checkResponse.headers.get('X-Detected-Mood'),
-              ambiance: checkResponse.headers.get('X-Ambiance-Prompt')
-            });
-          } catch (checkError) {
-            console.error('Error checking for preloaded music:', checkError);
+          // First check DIRECTLY if we have a preloaded music file for this specific book/page combo
+          // This will completely bypass the normal music generation if we have a match
+          if (
+            (bookIdStr === "64317" || bookIdStr === "7452") && 
+            (pageStr === "36" || pageStr === "37" || pageStr === "45" || pageStr === "46")
+          ) {
+            console.log(`DEBUG: This is a HARDCODED book/page combination: Book ${bookIdStr}, Page ${pageStr}`);
+            try {
+              // Make a direct request to get the preloaded music
+              const hardcodedResponse = await fetch('/api/music/generate-simple', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                  bookId: bookIdStr,
+                  page: pageStr,
+                  text: "Hardcoded music request",
+                  duration: 15.0
+                })
+              });
+              
+              if (!hardcodedResponse.ok) {
+                console.error('Failed to fetch hardcoded music:', hardcodedResponse.status, hardcodedResponse.statusText);
+                // Fall through to regular music generation
+              } else {
+                // Get the audio blob
+                const audioBlob = await hardcodedResponse.blob();
+                console.log('Received HARDCODED audio blob, size:', audioBlob.size, 'type:', audioBlob.type);
+                
+                if (audioBlob.size === 0) {
+                  console.error('Received empty hardcoded audio data');
+                  // Fall through to regular music generation
+                } else {
+                  // We got the hardcoded music successfully, play it
+                  // Create a new URL for the audio blob
+                  if (audioElement.src) {
+                    URL.revokeObjectURL(audioElement.src); // Clean up old URL
+                  }
+                  
+                  const audioUrl = URL.createObjectURL(audioBlob);
+                  console.log('Created hardcoded audio URL:', audioUrl);
+                  
+                  // Set the audio source
+                  audioElement.src = audioUrl;
+                  console.log('Set hardcoded audio source');
+                  
+                  // Store the current page number to avoid regenerating music for the same page
+                  localStorage.setItem('storia-last-music-page', currentPage.toString());
+                  
+                  // Update music status
+                  if (musicMood) {
+                    musicMood.innerHTML = `
+                      <div>Playing <strong>Preloaded</strong> Music</div>
+                      <div class="ambiance-info">Special music for this page</div>
+                    `;
+                  }
+                  
+                  // Show the music status
+                  if (musicStatus) {
+                    musicStatus.classList.remove('hidden');
+                  }
+                  
+                  // Play the audio with a small delay to ensure it's loaded
+                  setTimeout(() => {
+                    if (isMusicPlaying && audioElement) {
+                      // Set volume before playing
+                      if (volumeSlider) {
+                        audioElement.volume = volumeSlider.value / 100;
+                      }
+                      
+                      audioElement.play()
+                        .then(() => {
+                          console.log('Hardcoded music playback started successfully');
+                        })
+                        .catch(playError => {
+                          console.error('Error playing hardcoded audio:', playError);
+                        });
+                    }
+                  }, 500);
+                  
+                  // We've handled everything, exit the function
+                  isMusicGenerating = false;
+                  return;
+                }
+              }
+            } catch (hardcodedError) {
+              console.error('Error in hardcoded music fetch:', hardcodedError);
+              // Fall through to regular music generation
+            }
           }
           
           // Store the current page number to avoid regenerating music for the same page
@@ -362,7 +429,7 @@
               text: trimmedText,
               duration: 15.0,
               page: currentPage,
-              bookId: stringBookId // Pass standardized book ID for potential hard-coded music
+              bookId: bookIdStr // Pass standardized book ID for potential hard-coded music
             })
           });
           
